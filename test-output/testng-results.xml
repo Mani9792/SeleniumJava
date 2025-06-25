@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-06-25T08:57:17 IST" name="Default suite" finished-at="2025-06-25T08:57:28 IST" duration-ms="11042">
+    <groups>
+    </groups>
+    <test started-at="2025-06-25T08:57:17 IST" name="Default test" finished-at="2025-06-25T08:57:28 IST" duration-ms="11042">
+      <class name="com.Test_Components.PostAuth">
+        <test-method signature="mmttest()[pri:0, instance:com.Test_Components.PostAuth@5b8dfcc1]" started-at="2025-06-25T08:57:17 IST" name="mmttest" finished-at="2025-06-25T08:57:28 IST" duration-ms="11002" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- mmttest -->
+      </class> <!-- com.Test_Components.PostAuth -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
