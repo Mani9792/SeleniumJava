@@ -1,4 +1,4 @@
-	package com.Tests;
+package com.Tests;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class Login extends BaseTest_Drivers{
 	
 	WebDriver driver;
 	
-	@Test(enabled=true)
+	@Test(groups = { "smoke", "regression" }, enabled=true)
 	public void login_test() throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -84,7 +84,7 @@ public class Login extends BaseTest_Drivers{
 		
 	}
 	//(dependsOnMethods= {"login_test"})
-	@Test(enabled = true,description="checking the order page",dependsOnMethods= {"login_test"})
+	@Test(groups = { "regression" },enabled = true,description="checking the order page",dependsOnMethods= {"login_test"})
 	public void checkOrderPage() throws IOException
 	{
         Config config = new Config();

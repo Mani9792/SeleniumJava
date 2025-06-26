@@ -9,12 +9,12 @@
   <test name="Test" thread-count="5">
 		  <groups>
 		      <run>
-		        <include name="regression"/>
+		        <include name="smoke"/>
 		      </run>
 		  </groups>
 	  <classes>
 	      <class name="com.Tests.Login"/>
-	      <class name="com.Tests.ErrorValidation"/>    
+	      <!--<class name="com.Tests.ErrorValidation"/> -->     
 	  </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

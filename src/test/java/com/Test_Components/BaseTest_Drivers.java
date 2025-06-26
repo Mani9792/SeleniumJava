@@ -10,7 +10,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 
 import com.PageElements.LoginPage;
 import com.Utils.Config;
@@ -35,6 +37,8 @@ public class BaseTest_Drivers {
 		{
 			ChromeOptions co = new ChromeOptions();
 			co.addArguments("--remote-allow-origins=*"); //using this to get rid of Web socket issues in Chrome version > 111..
+			co.addArguments("--ignore-ssl-errors=yes");
+			co.addArguments("--ignore-certificate-errors");
 			WebDriverManager.chromedriver().setup();
 			if(browser.contains("headless"))
 			{
@@ -66,7 +70,7 @@ public class BaseTest_Drivers {
 		return driver;
 	}
 
-	@BeforeMethod
+	@BeforeMethod(alwaysRun=true)
 	public LoginPage launchApplication() throws IOException
 	{
 		driver = initializeDriver();
@@ -80,7 +84,7 @@ public class BaseTest_Drivers {
 		return login;
 	}
 	
-	@AfterMethod
+	@AfterMethod(alwaysRun=true)
 	public void tearDown()
 	{
 		driver.close();

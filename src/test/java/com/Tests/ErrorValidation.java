@@ -30,7 +30,7 @@ public class ErrorValidation extends BaseTest_Drivers{
 	
 	WebDriver driver;
 	
-	@Test(description="error validation on login page")
+	@Test(groups = {"regression" },description="error validation on login page")
 	public void login_errorValidation_test() throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
 		

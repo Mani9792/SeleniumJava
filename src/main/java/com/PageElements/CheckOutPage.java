@@ -23,16 +23,17 @@ public class CheckOutPage extends AbstractComponents{
 	@FindBy(xpath="//input[@placeholder='Select Country']")
 	WebElement country;
 	
-	@FindBy(xpath="//button[contains(@class,'ta-item')][2]")
+	@FindBy(xpath="(//button[contains(@class,'ta-item')]/span)[2]")
 	WebElement selectCountry;
 	
-	@FindBy(css=".action__submit")
+	@FindBy(xpath="//a[contains(@class,'action__submit')]")
 	WebElement placeOrder;	
 	
 	public void selectCountry(String countryName)
 	{
 		waitForElementToAppear(country);
         country.sendKeys(countryName);
+        scrollToElement(selectCountry);
         waitForElementToAppear(selectCountry);
 		selectCountry.click();
 	}
