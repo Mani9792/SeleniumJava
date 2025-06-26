@@ -37,8 +37,8 @@ post {
             allowMissing: false,
             alwaysLinkToLastBuild: true,
             keepAll: true,
-            reportDir: 'test-output',
-            reportFiles: 'ExtentReport.html',
+            reportDir: 'Extent_Reports',
+            reportFiles: 'index.html',
             reportName: 'Extent Report'
         ])
     }
