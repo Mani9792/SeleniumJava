@@ -31,7 +31,7 @@ pipeline {
                 script 
                 {
                  echo "Running ${params.TEST_TYPE} tests on ${params.BROWSER}"
-                 bat 'mvn clean install -Dbrowser=${params.BROWSER} -DsuiteFile=${params.TEST_TYPE}.xml'
+                 bat "mvn clean install -Dbrowser=${params.BROWSER} -DsuiteFile=${params.TEST_TYPE}.xml"
                 }
             }
         }
