@@ -8,11 +8,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import com.PageElements.LoginPage;
 import com.Utils.Config;
@@ -25,13 +28,13 @@ public class BaseTest_Drivers {
 	public LoginPage login ;
 	Config config = new Config();
 	
-	public WebDriver initializeDriver() throws IOException
+	public WebDriver initializeDriver(String browser) throws IOException
 	{		
 		//System.getProperty is added in String browser to ensure that the project run as per updates
 		// through the maven commands from terminal
 		
-		String browser = System.getProperty("browser")!=null ? 
-				System.getProperty("browser"):config.configure("browser");
+		//String browser = System.getProperty("browser")!=null ? 
+		//		System.getProperty("browser"):config.configure("browser");
 		
 		if(browser.contains("chrome"))
 		{
@@ -53,14 +56,22 @@ public class BaseTest_Drivers {
 		
 		else if(browser.equalsIgnoreCase("firefox"))
 		{
+			FirefoxOptions fo = new FirefoxOptions();
+			fo.addArguments("--remote-allow-origins=*"); //using this to get rid of Web socket issues in Chrome version > 111..
+			fo.addArguments("--ignore-ssl-errors=yes");
+			fo.addArguments("--ignore-certificate-errors");		
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		
 		else if(browser.equalsIgnoreCase("edge"))
 		{
+			EdgeOptions eo = new EdgeOptions();
+			eo.addArguments("--remote-allow-origins=*"); //using this to get rid of Web socket issues in Chrome version > 111..
+			eo.addArguments("--ignore-ssl-errors=yes");
+			eo.addArguments("--ignore-certificate-errors");
 			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+			driver = new EdgeDriver(eo);
 		}
 		
         driver.manage().timeouts().implicitlyWait(100,TimeUnit.SECONDS);
@@ -69,11 +80,11 @@ public class BaseTest_Drivers {
 		
 		return driver;
 	}
-
+    @Parameters("browser")
 	@BeforeMethod(alwaysRun=true)
-	public LoginPage launchApplication() throws IOException
+	public LoginPage launchApplication(String browser) throws IOException
 	{
-		driver = initializeDriver();
+		driver = initializeDriver(browser);
 		
 		login = new LoginPage(driver);
 		

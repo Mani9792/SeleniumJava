@@ -6,25 +6,32 @@ pipeline {
             choices: ['smoke', 'regression'],
             description: 'Select the type of test to run'
               )
+        choice(
+            name: 'BROWSER',
+            choices: ['chrome', 'edge','firefox'],
+            description: 'Select the browser for test execution'
+              )      
+              
     }
-    stages {
+    stages 
+    {
         stage('Build') {
             steps {
                 echo 'Building..'
             }
         }
+        stage('Show Selected Parameters') {
+            steps {
+                echo "Test Type selected: ${params.TEST_TYPE}"
+                echo "Browser selected: ${params.BROWSER}"
+            }
+        }
        stage('Run Tests') {
             steps {
-                script {
-                    if (params.TEST_TYPE == 'smoke') {
-                        echo "Running smoke tests..."
-                        bat 'mvn clean install -DsuiteFile=smoke.xml'
-                    } else if (params.TEST_TYPE == 'regression') {
-                        echo "Running regression tests..."
-                        bat 'mvn clean install -DsuiteFile=regression.xml'
-                    } else {
-                        error("Unknown test type: ${params.TEST_TYPE}")
-                    }
+                script 
+                {
+                 echo "Running ${params.TEST_TYPE} tests on ${params.BROWSER}"
+                 bat "mvn clean install -Dbrowser=${params.BROWSER} -DsuiteFile=${params.TEST_TYPE}.xml"
                 }
             }
         }
