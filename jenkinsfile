@@ -18,10 +18,10 @@ pipeline {
                 script {
                     if (params.TEST_TYPE == 'smoke') {
                         echo "Running smoke tests..."
-                        sh 'mvn clean install -DsuiteFile=smoke.xml'
+                        bat 'mvn clean install -DsuiteFile=smoke.xml'
                     } else if (params.TEST_TYPE == 'regression') {
                         echo "Running regression tests..."
-                        sh 'mvn clean install -DsuiteFile=regression.xml'
+                        bat 'mvn clean install -DsuiteFile=regression.xml'
                     } else {
                         error("Unknown test type: ${params.TEST_TYPE}")
                     }
